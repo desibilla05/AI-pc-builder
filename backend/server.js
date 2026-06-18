@@ -46,7 +46,7 @@ const geminiLimiter = rateLimit({
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5,
+  max: process.env.NODE_ENV === 'production' ? 15 : 100, // relaxed limit for development testing
   message: { error: 'Too many login or registration attempts. Please try again after 15 minutes.' },
   standardHeaders: true,
   legacyHeaders: false
