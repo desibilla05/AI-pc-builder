@@ -1,0 +1,35 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>BuildForge AI — Build Your Dream PC with AI</title>
+      <meta name="description" content="BuildForge AI is the most advanced AI-powered PC building platform. Get component recommendations, compatibility checking, and performance benchmarks — free forever." />
+      <meta name="robots" content="noindex, nofollow" />
+
+      <!-- Font preconnect for speed -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+      <!-- Anti-flash: apply theme BEFORE React renders -->
+      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
+      <script>
+        (function() {
+          var t = localStorage.getItem('buildforge-theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          if (t === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.background = '#0A0A0A';
+          } else {
+            document.documentElement.style.background = '#F5F2E8';
+          }
+        })();
+      </script>
+    </head>
+
+    <body>
+      <div id="root"></div>
+      <script type="module" src="/src/main.tsx"></script>
+    </body>
+  </html>

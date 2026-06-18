@@ -1,0 +1,401 @@
+/* ══════════════════════════════════════════════════════
+   BUILDFORGE AI — FULL DESIGN SYSTEM
+   Inspired by ApeChain: bold, loud, cinematic, colourful
+   Dark + Light theme via .dark class on <html>
+   ══════════════════════════════════════════════════════ */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────── DESIGN TOKENS ─────────────── */
+:root {
+  /* Backgrounds */
+  --bg:           #FAF9F6;   /* Clean light warm gray / off-white */
+  --bg-2:         #F3F2EE;   /* Slightly darker cream */
+  --bg-card:      #FFFFFF;
+  --bg-dark:      #0C0C0C;
+
+  /* Core brand palette - monochrome / minimal */
+  --neon:         #000000;   /* Pure black instead of neon yellow */
+  --orange:       #000000;   /* Pure black instead of orange */
+  --green:        #00B85C;   /* Clean success green */
+  --coral:        #E11D48;   /* Clean red/coral for error */
+  --amber:        #D97706;
+  --teal:         #0D9488;
+  --white:        #FFFFFF;
+  --black:        #000000;
+
+  /* Text */
+  --fg:           #0A0A0A;
+  --fg-2:         #404040;
+  --fg-muted:     #737373;
+  --fg-inverted:  #FAF9F6;
+
+  /* Borders */
+  --border:        rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+
+  /* Tailwind-compat aliases */
+  --background:         var(--bg);
+  --foreground:         var(--fg);
+  --card:               var(--bg-card);
+  --card-foreground:    var(--fg);
+  --popover:            var(--bg-card);
+  --popover-foreground: var(--fg);
+  --primary:            var(--black);
+  --primary-foreground: #fff;
+  --secondary:          var(--bg-2);
+  --secondary-foreground: var(--fg);
+  --muted:              var(--bg-2);
+  --muted-foreground:   var(--fg-muted);
+  --accent:             var(--black);
+  --accent-foreground:  var(--white);
+  --destructive:        var(--coral);
+  --destructive-foreground: #fff;
+  --input:              var(--bg-2);
+  --input-background:   var(--bg-2);
+  --switch-background:  var(--bg-2);
+  --ring:               rgba(0,0,0,0.1);
+  --radius:             0.5rem;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  /* Charts */
+  --chart-1: #000000;
+  --chart-2: #404040;
+  --chart-3: #737373;
+  --chart-4: #A3A3A3;
+  --chart-5: #D4D4D4;
+
+  /* Sidebar */
+  --sidebar:                  var(--bg-2);
+  --sidebar-foreground:       var(--fg);
+  --sidebar-primary:          var(--black);
+  --sidebar-primary-foreground: #fff;
+  --sidebar-accent:           var(--bg);
+  --sidebar-accent-foreground: var(--fg);
+  --sidebar-border:           var(--border);
+  --sidebar-ring:             var(--ring);
+}
+
+.dark {
+  --bg:           #0A0A0A;
+  --bg-2:         #121212;
+  --bg-card:      #181818;
+  --bg-dark:      #050505;
+
+  --fg:           #FAF9F6;
+  --fg-2:         #A3A3A3;
+  --fg-muted:     #666666;
+  --fg-inverted:  #0A0A0A;
+
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+
+  --background:         var(--bg);
+  --foreground:         var(--fg);
+  --card:               var(--bg-card);
+  --card-foreground:    var(--fg);
+  --popover:            #181818;
+  --popover-foreground: var(--fg);
+  --primary:            var(--white);
+  --primary-foreground: #000;
+  --secondary:          var(--bg-2);
+  --secondary-foreground: var(--fg-2);
+  --muted:              var(--bg-2);
+  --muted-foreground:   var(--fg-muted);
+  --accent:             var(--white);
+  --accent-foreground:  var(--black);
+  --destructive:        var(--coral);
+  --destructive-foreground: #fff;
+  --input:              rgba(255,255,255,0.06);
+  --input-background:   var(--bg-2);
+  --switch-background:  #262626;
+  --ring:               rgba(255,255,255,0.15);
+
+  --sidebar:                  #0C0C0C;
+  --sidebar-foreground:       var(--fg);
+  --sidebar-primary:          var(--white);
+  --sidebar-primary-foreground: #000;
+  --sidebar-accent:           var(--bg-2);
+  --sidebar-accent-foreground: var(--fg);
+  --sidebar-border:           var(--border);
+  --sidebar-ring:             var(--ring);
+}
+
+/* ─────────────── TAILWIND BRIDGE ─────────────── */
+@theme inline {
+  --color-background:              var(--background);
+  --color-foreground:              var(--foreground);
+  --color-card:                    var(--card);
+  --color-card-foreground:         var(--card-foreground);
+  --color-popover:                 var(--popover);
+  --color-popover-foreground:      var(--popover-foreground);
+  --color-primary:                 var(--primary);
+  --color-primary-foreground:      var(--primary-foreground);
+  --color-secondary:               var(--secondary);
+  --color-secondary-foreground:    var(--secondary-foreground);
+  --color-muted:                   var(--muted);
+  --color-muted-foreground:        var(--muted-foreground);
+  --color-accent:                  var(--accent);
+  --color-accent-foreground:       var(--accent-foreground);
+  --color-destructive:             var(--destructive);
+  --color-destructive-foreground:  var(--destructive-foreground);
+  --color-border:                  var(--border);
+  --color-input:                   var(--input);
+  --color-input-background:        var(--input-background);
+  --color-switch-background:       var(--switch-background);
+  --color-ring:                    var(--ring);
+  --color-chart-1:                 var(--chart-1);
+  --color-chart-2:                 var(--chart-2);
+  --color-chart-3:                 var(--chart-3);
+  --color-chart-4:                 var(--chart-4);
+  --color-chart-5:                 var(--chart-5);
+  --radius-sm:   calc(var(--radius) - 4px);
+  --radius-md:   calc(var(--radius) - 2px);
+  --radius-lg:   var(--radius);
+  --radius-xl:   calc(var(--radius) + 6px);
+  --color-sidebar:                 var(--sidebar);
+  --color-sidebar-foreground:      var(--sidebar-foreground);
+  --color-sidebar-primary:         var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:          var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:          var(--sidebar-border);
+  --color-sidebar-ring:            var(--sidebar-ring);
+}
+
+/* ─────────────── BASE ─────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  html.dark { color-scheme: dark; }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; text-transform: none; }
+  h2 { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; text-transform: none; }
+  h3 { font-size: clamp(1.2rem, 2.2vw, 1.8rem); font-weight: 500; line-height: 1.2; text-transform: none; }
+  h4 { font-size: 0.9rem; font-weight: 600; text-transform: none; }
+  p { line-height: 1.6; font-weight: 400; color: var(--fg-muted); }
+
+  * { @apply border-border outline-ring/50; }
+  ::selection { background: #000000; color: #ffffff; }
+}
+
+/* ─────────────── UTILITIES ─────────────── */
+@layer utilities {
+
+  /* ── Text gradients (disabled for minimal style) ── */
+  .text-gradient-fire,
+  .text-gradient-nature,
+  .text-gradient-heat,
+  .text-gradient-blue,
+  .text-gradient-violet,
+  .text-shimmer {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: initial !important;
+    color: var(--fg) !important;
+  }
+
+  /* ── Pill badge ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.25rem 0.75rem; border-radius: 999px;
+    background: var(--bg-card); border: 1px solid var(--border-strong);
+    color: var(--fg);
+  }
+  .badge-neon   { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+  .badge-orange { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+  .badge-green  { background: rgba(0, 184, 92, 0.08); border-color: rgba(0, 184, 92, 0.15); color: #00B85C; }
+
+  /* ── Rounded pill buttons (minimal style) ── */
+  .btn-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.6rem 1.75rem; border-radius: 999px;
+    border: 1px solid var(--fg); background: transparent; color: var(--fg);
+    cursor: pointer; transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+  }
+  .btn-pill:hover { background: var(--fg); color: var(--bg); }
+
+  .btn-pill-filled {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.6rem 1.75rem; border-radius: 999px; white-space: nowrap;
+    cursor: pointer; transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--fg); border: 1px solid var(--fg); color: var(--bg);
+  }
+  .btn-pill-filled:hover { background: var(--fg-2); border-color: var(--fg-2); }
+
+  .btn-pill-neon {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.6rem 1.75rem; border-radius: 999px; white-space: nowrap;
+    cursor: pointer; transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--fg); border: 1px solid var(--fg); color: var(--bg);
+  }
+  .btn-pill-neon:hover { background: var(--fg-2); border-color: var(--fg-2); }
+
+  /* ── Card ── */
+  .bold-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bold-card:hover {
+    border-color: var(--fg);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  }
+
+  /* ── Noise texture overlay (disabled) ── */
+  .noise::after {
+    display: none;
+  }
+
+  /* ── Grid background ── */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .dark .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  }
+
+  /* ── Dot grid ── */
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* ── Marquee ── */
+  .marquee-track {
+    display: flex; animation: marquee 40s linear infinite; width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  .marquee-track-reverse { animation-direction: reverse; }
+
+  /* ── Section label (minimal style) ── */
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border: 1px solid var(--border-strong);
+    color: var(--fg); background: var(--bg-card);
+    border-radius: 2px;
+  }
+
+  /* ── Divider ── */
+  .section-divider { height: 1px; background: var(--border); }
+
+  /* ── Stat number ── */
+  .stat-number {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1; letter-spacing: -0.02em;
+  }
+
+  /* ── Glow (disabled for minimal style) ── */
+  .glow-orange, .glow-neon, .glow-green, .glow-blue, .glow-violet, .glow-cyan {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+  }
+
+  /* ── Glass ── */
+  .glass {
+    background: rgba(255,255,255,0.03); backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06);
+  }
+  :root .glass { background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.06); }
+}
+
+/* ─────────────── KEYFRAMES ─────────────── */
+@keyframes marquee       { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes spin-slow     { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes slide-up      { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fade-in       { from { opacity:0; } to { opacity:1; } }
+
+/* ─────────────── COMPONENT CLASSES ─────────────── */
+
+/* Hero image tilt cards */
+.tilt-card {
+  border-radius: 0.5rem; overflow: hidden; position: relative;
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.05); }
+
+/* Floating icons (disabled animation) */
+.floating-icon         { animation: none; }
+.floating-icon-reverse { animation: none; }
+
+/* Orb (hidden) */
+.orb {
+  display: none;
+}
+
+/* Scan line animation (disabled) */
+.scan-effect::before {
+  display: none;
+}
+
+/* Spinning ring decoration (hidden) */
+.spin-ring { display: none; }
+.spin-ring-r { display: none; }
+
+/* Giant background text */
+.giant-text-filled {
+  font-size: clamp(6rem, 16vw, 14rem);
+  font-weight: 300; line-height: 0.9; letter-spacing: -0.03em;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.02);
+  color: transparent;
+  user-select: none; pointer-events: none;
+}
+.dark .giant-text-filled { -webkit-text-stroke: 1px rgba(255,255,255,0.02); }
+
+/* Image card hover overlay */
+.img-card-overlay {
+  position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+  transition: opacity 200ms ease;
+}
+
+/* Responsive Utilities */
+.hidden { display: none; }
+@media (min-width: 768px) {
+  .md\:flex { display: flex !important; }
+  .md\:hidden { display: none !important; }
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fg-muted);
+}

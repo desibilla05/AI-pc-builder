@@ -1,0 +1,123 @@
+/* KEEP_IN_SYNC — Synced with src/styles/theme.css */
+/* BuildForge AI Luxury Theme: Baby Pink × Rose Gold × Jet Black × Cream */
+
+:root {
+  --font-size: 16px;
+  --background: #FAF8F6;
+  --foreground: #140A10;
+  --card: #FFFFFF;
+  --card-foreground: #140A10;
+  --popover: #FFFFFF;
+  --popover-foreground: #140A10;
+  --primary: #D4698A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5EEF1;
+  --secondary-foreground: #4A2D3C;
+  --muted: #F5EEF1;
+  --muted-foreground: #9B7E8C;
+  --accent: #C41E54;
+  --accent-foreground: #FFFFFF;
+  --destructive: #C41E54;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(212, 105, 138, 0.18);
+  --input: #F5EEF1;
+  --input-background: #F5EEF1;
+  --switch-background: #D4C0C8;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: rgba(212, 105, 138, 0.45);
+  --chart-1: #D4698A;
+  --chart-2: #C41E54;
+  --chart-3: #E55A24;
+  --chart-4: #C9963A;
+  --chart-5: #8B4B72;
+  --radius: 0.875rem;
+  --sidebar: #F5EEF1;
+  --sidebar-foreground: #140A10;
+  --sidebar-primary: #D4698A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #EDE0E6;
+  --sidebar-accent-foreground: #140A10;
+  --sidebar-border: rgba(212, 105, 138, 0.18);
+  --sidebar-ring: rgba(212, 105, 138, 0.45);
+}
+
+.dark {
+  --background: #080808;
+  --foreground: #F0ECE8;
+  --card: #111111;
+  --card-foreground: #F0ECE8;
+  --popover: #161016;
+  --popover-foreground: #F0ECE8;
+  --primary: #F4A7C3;
+  --primary-foreground: #0D0208;
+  --secondary: #1A1018;
+  --secondary-foreground: #C4ADB8;
+  --muted: #1A1018;
+  --muted-foreground: #7A6572;
+  --accent: #E8366A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #E8366A;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(244, 167, 195, 0.10);
+  --input: rgba(244, 167, 195, 0.07);
+  --input-background: #1A1018;
+  --switch-background: #3A1C2C;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: rgba(244, 167, 195, 0.40);
+  --chart-1: #F4A7C3;
+  --chart-2: #E8366A;
+  --chart-3: #FF6B35;
+  --chart-4: #E8B86D;
+  --chart-5: #C850C0;
+  --sidebar: #0C080C;
+  --sidebar-foreground: #F0ECE8;
+  --sidebar-primary: #F4A7C3;
+  --sidebar-primary-foreground: #0D0208;
+  --sidebar-accent: #221520;
+  --sidebar-accent-foreground: #F0ECE8;
+  --sidebar-border: rgba(244, 167, 195, 0.08);
+  --sidebar-ring: rgba(244, 167, 195, 0.40);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
