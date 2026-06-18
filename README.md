@@ -87,3 +87,9 @@ Deploy the `backend` directory to cloud hosting providers like Render, Railway, 
 ### Frontend client
 Build the static frontend bundle (`npm run build`) and host the `/dist` directory on providers like Vercel, Netlify, or Cloudflare Pages.
 - Configure `VITE_BACKEND_URL` in the frontend settings to point to your deployed backend URL.
+
+---
+
+## Special Thanks
+
+A very special thanks to **Vritti Thakkar** for helping and supporting me throughout the entire development of this project! Your help was invaluable in bringing BuildForge AI to life.
