@@ -27,10 +27,13 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// 2. Rate Limiting Configurations
+// 2. Rate Limiting Configurations (Skipped in development mode)
+const isProd = process.env.NODE_ENV === 'production';
+
 const generalLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 60,
+  skip: () => !isProd,
   message: { error: 'Too many requests from this IP, please try again after a minute.' },
   standardHeaders: true,
   legacyHeaders: false
@@ -39,6 +42,7 @@ const generalLimiter = rateLimit({
 const geminiLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 10,
+  skip: () => !isProd,
   message: { error: 'Rate limit exceeded. Too many requests. Please wait a moment before retrying.' },
   standardHeaders: true,
   legacyHeaders: false
@@ -46,7 +50,8 @@ const geminiLimiter = rateLimit({
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: process.env.NODE_ENV === 'production' ? 15 : 100, // relaxed limit for development testing
+  max: 15,
+  skip: () => !isProd,
   message: { error: 'Too many login or registration attempts. Please try again after 15 minutes.' },
   standardHeaders: true,
   legacyHeaders: false
