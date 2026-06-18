@@ -18,6 +18,11 @@ export function AuthModal() {
   useEffect(() => {
     setIsSignUp(isSignUpMode);
     setError(null);
+    if (isAuthModalOpen) {
+      setEmail("");
+      setPassword("");
+      setName("");
+    }
   }, [isSignUpMode, isAuthModalOpen]);
 
   if (!isAuthModalOpen) return null;
