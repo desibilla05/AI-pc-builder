@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import { AuthModal } from "../ui/AuthModal";
 import { useThemeStore } from "../../../store/themeStore";
+import { useAuthStore } from "../../../store/authStore";
 
 export function RootLayout() {
   const location = useLocation();
@@ -13,10 +14,15 @@ export function RootLayout() {
 
   // Subscribe to trigger re-renders on theme change
   useThemeStore();
+  
+  const { checkAuth } = useAuthStore();
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
+    // Check auth on layout mount
+    checkAuth();
+
     // Redirect to the Welcome page on initial page load / full browser reload
     if (window.location.pathname !== "/") {
       navigate("/");

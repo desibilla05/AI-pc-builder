@@ -4,7 +4,7 @@ import { useThemeStore } from "../../../store/themeStore";
 import { X, Mail, Lock, User, Github } from "lucide-react";
 
 export function AuthModal() {
-  const { isAuthModalOpen, closeAuthModal, login, isSignUpMode } = useAuthStore();
+  const { isAuthModalOpen, closeAuthModal, login, signUp, isSignUpMode } = useAuthStore();
   const { theme } = useThemeStore();
   const isDark = theme === "dark";
 
@@ -12,18 +12,50 @@ export function AuthModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   // Sync state when mode parameter changes
   useEffect(() => {
     setIsSignUp(isSignUpMode);
+    setError(null);
   }, [isSignUpMode, isAuthModalOpen]);
 
   if (!isAuthModalOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    login(email, isSignUp ? name || "Builder" : "Builder");
+    setError(null);
+
+    if (!email || !password) {
+      setError("Please fill out all fields.");
+      return;
+    }
+
+    if (isSignUp) {
+      if (!name.trim()) {
+        setError("Please enter your display name.");
+        return;
+      }
+      if (password.length < 8) {
+        setError("Password must be at least 8 characters long.");
+        return;
+      }
+
+      const res = await signUp(name, email, password);
+      if (!res.success) {
+        setError(res.message || "Failed to create account.");
+      }
+    } else {
+      const res = await login(email, password);
+      if (!res.success) {
+        setError(res.message || "Incorrect email or password.");
+      }
+    }
+  };
+
+  const toggleMode = () => {
+    setIsSignUp(!isSignUp);
+    setError(null);
   };
 
   const bg = isDark ? "#0A0A09" : "#FFFFFF";
@@ -73,6 +105,22 @@ export function AuthModal() {
               {isSignUp ? "Create an account to save your builds." : "Log in to access your saved PC builds."}
             </p>
           </div>
+
+          {/* Error Message Display */}
+          {error && (
+            <div style={{
+              background: "rgba(239, 68, 68, 0.08)",
+              border: "1px solid rgba(239, 68, 68, 0.2)",
+              color: "#EF4444",
+              padding: "10px",
+              borderRadius: "4px",
+              fontSize: "0.75rem",
+              marginBottom: "1.5rem",
+              textAlign: "center"
+            }}>
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {isSignUp && (
@@ -152,7 +200,7 @@ export function AuthModal() {
 
           <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
             <button
-              onClick={() => setIsSignUp(!isSignUp)}
+              onClick={toggleMode}
               style={{
                 background: "none", border: "none", cursor: "pointer",
                 fontSize: "0.75rem", color: muted,
