@@ -119,6 +119,8 @@ export function PCBuilder() {
   const [isAIModalOpen, setIsAIModalOpen] = useState(false);
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [isDiagnosticsOpen, setIsDiagnosticsOpen] = useState(false);
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  const [customBuildName, setCustomBuildName] = useState("");
 
   // Chatbot states
   interface ChatMessage {
@@ -749,10 +751,16 @@ You can select which components to keep and apply them to your active build in t
       openAuthModal(true); // Open directly in Sign Up mode
       return;
     }
+    setCustomBuildName(`Custom PC Build (${performanceTier})`);
+    setIsSaveModalOpen(true);
+  };
+
+  const executeSave = () => {
+    const nameToUse = customBuildName.trim() || `Custom PC Build (${performanceTier})`;
     const totalPrice = Object.values(build).reduce((sum, c) => sum + (c ? c.price : 0), 0);
     saveBuild({
       id: "build-" + Date.now(),
-      name: `Custom PC Build (${performanceTier})`,
+      name: nameToUse,
       date: new Date().toISOString(),
       totalPrice,
       components: {
@@ -762,6 +770,7 @@ You can select which components to keep and apply them to your active build in t
         ram: build.ram ? { id: build.ram.id, name: build.ram.name } : undefined,
       }
     });
+    setIsSaveModalOpen(false);
     showToast("Build saved to cloud!");
   };
 
@@ -1860,6 +1869,80 @@ You can select which components to keep and apply them to your active build in t
               )}
             </div>
 
+          </div>
+        </div>
+      )}
+
+
+      {/* Save Build Name Modal */}
+      {isSaveModalOpen && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 99999,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)",
+          padding: "1rem",
+        }}>
+          <div style={{
+            width: "100%", maxWidth: "400px",
+            background: cardBg, borderRadius: "8px",
+            border: `1px solid ${borderStrong}`,
+            boxShadow: "0 24px 60px rgba(0,0,0,0.15)",
+            overflow: "hidden", position: "relative",
+          }}>
+            {/* Top decorative line */}
+            <div style={{ height: "4px", background: fgPrimary }} />
+
+            <div style={{ padding: "2rem" }}>
+              <h3 style={{ fontSize: "1.2rem", fontWeight: 300, color: fgPrimary, letterSpacing: "-0.02em", marginBottom: "8px", fontFamily: "monospace", textTransform: "uppercase" }}>
+                Name Your Build
+              </h3>
+              <p style={{ fontSize: "0.75rem", color: fgMuted, marginBottom: "1.5rem" }}>
+                Specify a name to identify this configuration in your dashboard.
+              </p>
+
+              <div style={{ position: "relative", marginBottom: "1.5rem" }}>
+                <input
+                  type="text"
+                  placeholder="e.g. Dream Gaming Rig 2026"
+                  value={customBuildName}
+                  onChange={(e) => setCustomBuildName(e.target.value)}
+                  style={{
+                    width: "100%", padding: "12px", borderRadius: "4px",
+                    background: isDark ? "#121212" : "#F5F5F5",
+                    border: `1px solid ${border}`, color: fgPrimary,
+                    fontSize: "0.85rem", outline: "none", boxSizing: "border-box"
+                  }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = fgPrimary)}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = border)}
+                  autoFocus
+                />
+              </div>
+
+              <div style={{ display: "flex", gap: "12px" }}>
+                <button
+                  onClick={() => setIsSaveModalOpen(false)}
+                  style={{
+                    flex: 1, padding: "12px", borderRadius: "4px",
+                    background: "transparent", color: fgMuted, border: `1px solid ${border}`,
+                    cursor: "pointer", fontSize: "0.75rem", fontWeight: 600,
+                    textAlign: "center"
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={executeSave}
+                  style={{
+                    flex: 1, padding: "12px", borderRadius: "4px",
+                    background: fgPrimary, color: isDark ? "#0A0A0A" : "#FAF9F6",
+                    border: "none", cursor: "pointer", fontSize: "0.75rem", fontWeight: 700,
+                    textAlign: "center", textTransform: "uppercase", letterSpacing: "0.05em"
+                  }}
+                >
+                  Save Build
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

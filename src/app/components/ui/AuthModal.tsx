@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../../../store/authStore";
 import { useThemeStore } from "../../../store/themeStore";
-import { X, Mail, Lock, User, Github } from "lucide-react";
+import { X, Mail, Lock, User } from "lucide-react";
 
 export function AuthModal() {
   const { isAuthModalOpen, closeAuthModal, login, signUp, isSignUpMode } = useAuthStore();
@@ -178,25 +178,7 @@ export function AuthModal() {
             </button>
           </form>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: "1.5rem 0" }}>
-            <div style={{ flex: 1, height: "1px", background: border }} />
-            <span style={{ fontSize: "0.65rem", fontWeight: 700, color: muted, textTransform: "uppercase", letterSpacing: "0.1em" }}>OR</span>
-            <div style={{ flex: 1, height: "1px", background: border }} />
-          </div>
 
-          <button style={{
-            width: "100%", padding: "12px", borderRadius: "4px",
-            background: "transparent", color: fg, border: `1px solid ${border}`, cursor: "pointer",
-            fontSize: "0.8rem", fontWeight: 600,
-            display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-            transition: "all 150ms ease",
-          }}
-            onMouseEnter={e => { (e.currentTarget.style.background = isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)"); }}
-            onMouseLeave={e => { (e.currentTarget.style.background = "transparent"); }}
-          >
-            <Github style={{ width: "16px", height: "16px" }} />
-            Continue with GitHub
-          </button>
 
           <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
             <button

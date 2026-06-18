@@ -70,6 +70,15 @@ async function getMongoDb() {
     mongoDb = mongoClient.db(dbName || 'buildforge');
     isMongoConnected = true;
     console.log(`[Database] Connected successfully to MongoDB Atlas database: ${dbName}`);
+
+    // Create unique index on email field
+    try {
+      await mongoDb.collection('users').createIndex({ email: 1 }, { unique: true });
+      console.log('[Database] Created unique index on users.email');
+    } catch (indexErr) {
+      console.warn('[Database] Unique index on email could not be created or already exists:', indexErr.message);
+    }
+
     return mongoDb;
   } catch (err) {
     console.error('[Database] Failed to connect to MongoDB Atlas, falling back to JSON storage.', err.message);
