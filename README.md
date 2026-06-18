@@ -6,6 +6,15 @@ The project features a client-side React SPA and a secure Express backend server
 
 ---
 
+## Preview
+
+![BuildForge AI Hero Preview](public/images/hero-pc.png)
+
+*Interactive Configuration Dashboard:*
+![Interactive Configuration Preview](public/images/welcome-ref.png)
+
+---
+
 ## Key Features
 
 * **Interactive PC Builder**: Select and customize computer parts with instant system diagnostics.
