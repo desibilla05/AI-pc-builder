@@ -8,10 +8,10 @@ The project features a client-side React SPA and a secure Express backend server
 
 ## Preview
 
-![BuildForge AI Hero Preview](public/images/hero-pc.png)
+![BuildForge AI Landing Page](public/images/website-home.png)
 
 *Interactive Configuration Dashboard:*
-![Interactive Configuration Preview](public/images/welcome-ref.png)
+![Interactive Configuration Dashboard](public/images/website-builder.png)
 
 ---
 
